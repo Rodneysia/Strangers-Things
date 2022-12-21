@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-
+import Create from './components/Create';
 
 
 const App = () => {
   const [posts, setPosts] = useState([]);
     const [postId, setPostId] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+  
     console.log('posts', posts);
 
     useEffect(() => {
@@ -18,7 +17,7 @@ const App = () => {
        
       // console.log('resp:', resp);
        setPosts(resp.data.posts);
-     
+       
   
 
       }
@@ -26,20 +25,23 @@ const App = () => {
     }, []);
 
   return <>
+  
     <h1>
       Posts
     </h1>
     {
-        posts.map(post => (<div key={post.id}>
-        <h3>{post.title}</h3>
-        <div>{post.description}</div>
-      </div>))
+        posts.map((post) => (
+        <div key={post._id}>
+          <h3>{post.title}</h3>
+          <p>{post.description}</p>
+        </div>
+      ))
     }
     </>
   
-  }
+  };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />,
