@@ -7,9 +7,9 @@ const Create = () => {
   return (
     <>
 
-     <h3>
+     <h1>
         Create a Post
-    </h3> 
+    </h1> 
     <form>
         
     </form>
