@@ -1,25 +1,44 @@
-import React,  {useEffect, useState} from 'react';
+import React,  {useState} from 'react';
 
 const Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
+  
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
       
+       
+        fetch ('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/users/register' , {
+  
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+    },
+        body: JSON.stringify({
+          user : {
+            username: email,
+            password: password,
+          }
+        }),
+      }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(console.error);
+   
     }
 
-
+   
+  
   return (
     <>
     <h1>Register</h1>
 
      <form onSubmit={handleSubmit}>
-        <label>Full Name</label>
-        <input value={name} name="name" id="name" placeholder="Full Name"></input>
-
-
+    
       <label htmlFor="email">Email</label> 
       <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@email.com" id="email" name="email"></input>
 
