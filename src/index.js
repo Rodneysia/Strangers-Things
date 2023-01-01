@@ -1,22 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Login from './components/Login';
 import Register from './components/Register';
-import Create from './components/Create';
+import Login from './components/Login';
+
+
 
 
 const App = () => {
     const [posts, setPosts] = useState([]);
-    const [postId, setPostId] = useState(null);
     const [currentForm, setCurrentForm] = useState('login');
+    const [user, setUser] = useState({});
     
 
     const toggleForm = (formName) => {
       setCurrentForm(formName);
     }
   
-    //console.log('posts', posts);
+   const tokenToUser = () => {
+    const token = window.localStorage.getItem('token');
+    if (token) { 
+      fetch ('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/users/me' , {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      })
+      .then(response => response.json())
+      .then(result => {
+        const user = result.data;
+        setUser(user);
+        //console.log(user);
+      })
+      .catch(console.error);
+    }
+   };
 
     useEffect(() => {
       const fetchPosts = async () => {
@@ -26,6 +44,7 @@ const App = () => {
       // console.log('resp:', resp);
        setPosts(resp.data.posts);
        
+       tokenToUser();
 
       }
       fetchPosts();
@@ -33,7 +52,7 @@ const App = () => {
 
   return <>
       {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
+        currentForm === "login" ? <Login onFormSwitch={toggleForm} tokenToUser={tokenToUser}/> : <Register onFormSwitch={toggleForm} />
       }
     <h1>
       Posts
@@ -56,7 +75,7 @@ root.render(
   <React.StrictMode>
     
     <App />
-    <Create />
+   
   </React.StrictMode>
 
 );
