@@ -40,10 +40,10 @@ const Register = (props) => {
      <form onSubmit={handleSubmit}>
     
       <label htmlFor="email">Email</label> 
-      <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@email.com" id="email" name="email"></input>
+      <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"  placeholder="youremail@email.com" required id="email" name="email"></input>
 
       <label htmlFor="password">Password</label> 
-      <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" id="password" name="password"></input> 
+      <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" minLength={8} required placeholder="password"  id="password" name="password"></input> 
 
       <button type="submit">Register</button>
    </form>

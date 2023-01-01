@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router} from 'react-router-dom';
 import './index.css';
 import Register from './components/Register';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 
 
 
@@ -51,12 +53,14 @@ const App = () => {
     }, []);
 
   return <>
-      {
+   
+      <div>
+        <Navbar/>
+      </div>
+     
+    {
         currentForm === "login" ? <Login onFormSwitch={toggleForm} tokenToUser={tokenToUser}/> : <Register onFormSwitch={toggleForm} />
       }
-    <h1>
-      Posts
-    </h1>
     {
         posts.map((post) => (
         <div key={post._id}>
@@ -73,8 +77,8 @@ const App = () => {
   const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Router><App /></Router>
     
-    <App />
    
   </React.StrictMode>
 
