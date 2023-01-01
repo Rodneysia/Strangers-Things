@@ -20,12 +20,26 @@ body {
   border-radius: 5px;
 }
 
-.header {
+ul{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  list-style: none;
+  background-color: rgb(117, 117, 204);
+  padding: 1em;
 }
+
+li {
+  margin: 0 1em;
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+}
+li:hover{
+  text-decoration: underline solid black;
+}
+a{
+  text-decoration: none;
+}
+
 
 .btn {
   display: inline-block;
@@ -40,20 +54,6 @@ body {
   font-size: 15px;
   font-family: inherit;
 }
-
-.btn:focus {
-  outline: none;
-}
-
-.btn:active {
-  transform: scale(0.98);
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
 
 
 footer {

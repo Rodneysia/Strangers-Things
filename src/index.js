@@ -5,6 +5,7 @@ import './index.css';
 import Register from './components/Register';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import {Routes, Route} from 'react-router-dom';
 
 
 
@@ -53,14 +54,21 @@ const App = () => {
     }, []);
 
   return <>
-   
-      <div>
-        <Navbar/>
-      </div>
-     
-    {
+      {
         currentForm === "login" ? <Login onFormSwitch={toggleForm} tokenToUser={tokenToUser}/> : <Register onFormSwitch={toggleForm} />
       }
+      <div>
+        <Navbar/>
+        <Routes>
+          <Route exact path="/posts" element={<App/>}></Route>
+          <Route exact path="/users/me" ></Route>
+          <Route exact path="/users/login" element={<Login/>} ></Route>
+        </Routes>
+          
+      
+      </div>
+     
+    
     {
         posts.map((post) => (
         <div key={post._id}>
