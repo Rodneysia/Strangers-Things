@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 
+
 const Login = (props) => {
     const tokenToUser = props.tokenToUser;
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
+  
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+    e.preventDefault();
       
         fetch ('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/users/login' , {
   
@@ -32,10 +34,11 @@ const Login = (props) => {
       })
       .catch(err => console.log(err));
     }
+    
 
   return (
     <>
-
+     
     <h1>
        Login
    </h1> 
@@ -48,7 +51,7 @@ const Login = (props) => {
 
       <button type="submit">Login</button>
    </form>
-        <button onClick={() => props.onFormSwitch('register')}>New Users Register here</button>
+        
    </>
   )
 }

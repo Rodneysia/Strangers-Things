@@ -1,95 +1,66 @@
-import React, {useEffect, useState} from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router} from 'react-router-dom';
-import './index.css';
-import Register from './components/Register';
-import Login from './components/Login';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+  useRouteError,
+} from "react-router-dom";
+import App from './components/App';
+import Home from "./components/Home";
+import Register from "./components/Register";
+import Login from './components/Login'
 import Navbar from './components/Navbar';
-import {Routes, Route} from 'react-router-dom';
+import './index.css';
 
+const ErrorBoundary = () => {
+  let error = useRouteError();
+  console.error(error);
+  return <div>Dang!</div>;
+}
 
-
-
-const App = () => {
-    const [posts, setPosts] = useState([]);
-    const [currentForm, setCurrentForm] = useState('login');
-    const [user, setUser] = useState({});
-    
-
-    const toggleForm = (formName) => {
-      setCurrentForm(formName);
-    }
-  
-   const tokenToUser = () => {
-    const token = window.localStorage.getItem('token');
-    if (token) { 
-      fetch ('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/users/me' , {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      })
-      .then(response => response.json())
-      .then(result => {
-        const user = result.data;
-        setUser(user);
-        //console.log(user);
-      })
-      .catch(console.error);
-    }
-   };
-
-    useEffect(() => {
-      const fetchPosts = async () => {
-        const resp = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/posts/')
-       .then ( (resp) => resp.json () )
-       
-      // console.log('resp:', resp);
-       setPosts(resp.data.posts);
-       
-       tokenToUser();
-
-      }
-      fetchPosts();
-    }, []);
-
-  return <>
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} tokenToUser={tokenToUser}/> : <Register onFormSwitch={toggleForm} />
-      }
-      <div>
-        <Navbar/>
-        <Routes>
-          <Route exact path="/posts" element={<App/>}></Route>
-          <Route exact path="/users/me" ></Route>
-          <Route exact path="/users/login" element={<Login/>} ></Route>
-        </Routes>
-          
-      
-      </div>
-     
-    
-    {
-        posts.map((post) => (
-        <div key={post._id}>
-          <h3>{post.title}</h3>
-          <p>{post.description}</p>
-        </div>
-      ))
-    }
-
+const AppLayout = () => {
+  return (
+    <>
+    <Navbar />
     </>
+  )
+}
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "/posts",
+        element: <App />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "/users/register",
+        element: <Register />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "/users/login",
+        element: <Login />,
+        errorElement: <ErrorBoundary />,
+      },
+    ]
+  }
+ 
+]);
+
+
+createRoot(document.getElementById("root")).render(
   
-  };
-
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Router><App /></Router>
-    
+    <RouterProvider router={router} />
    
-  </React.StrictMode>
-
+  
 );
-
-export default App
