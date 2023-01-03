@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 const Register = (props) => {
@@ -38,7 +37,6 @@ const Register = (props) => {
     }
 
    
-  
   return (
     <>
     <h1>Register</h1>

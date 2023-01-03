@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 
@@ -11,7 +10,7 @@ const Login = (props) => {
   
     if (userIsActive) {
       return <Navigate to="/posts"/>
-    }
+    } 
     const handleSubmit = (e) => {
     e.preventDefault();
       
@@ -40,9 +39,9 @@ const Login = (props) => {
         
       })
       .catch(err => console.log(err));
-    }
-    
 
+    }
+  
   return (
     <>
     <h1>Login</h1>
@@ -55,7 +54,7 @@ const Login = (props) => {
 
       <button className="btn" type="submit">Login</button>
    </form>
- 
+    <button className="btn">Logout</button>
    </>
   )
 }
