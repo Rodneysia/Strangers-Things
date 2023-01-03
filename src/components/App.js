@@ -5,9 +5,6 @@ const App = () => {
     //console.log(window.location);
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
-  
-    
-
    
     useEffect(() => {
         const fetchPosts = async () => {

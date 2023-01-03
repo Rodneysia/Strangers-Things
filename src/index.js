@@ -6,6 +6,7 @@ import {
   Route,
   Link,
   useRouteError,
+  Outlet,
 } from "react-router-dom";
 import App from './components/App';
 import Home from "./components/Home";
@@ -24,6 +25,7 @@ const AppLayout = () => {
   return (
     <>
     <Navbar />
+    <Outlet />
     </>
   )
 }
@@ -31,36 +33,35 @@ const AppLayout = () => {
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: "/",
         element: <Home />,
-        errorElement: <ErrorBoundary />,
+        
       },
       {
         path: "/posts",
         element: <App />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "/users/register",
         element: <Register />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "/users/login",
         element: <Login />,
-        errorElement: <ErrorBoundary />,
       },
-    ]
-  }
+    ],
+  },
  
 ]);
 
 
 createRoot(document.getElementById("root")).render(
-  
+ 
     <RouterProvider router={router} />
+    
    
   
 );

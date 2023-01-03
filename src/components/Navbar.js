@@ -5,9 +5,10 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
+    <>
     <nav className="nav">
       
-      <div>
+      <div className="nav-container">
         <Link to="/"> <h1>Stranger's Things</h1></Link>
         <ul className="navList">
           <li><NavLink to="/"> Home </NavLink></li>
@@ -18,6 +19,7 @@ const Navbar = () => {
       </div>
 
     </nav>
+    </>
   )
 }
 

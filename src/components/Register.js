@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from "react-router-dom";
 
 const Register = (props) => {
     const [email, setEmail] = useState('');
@@ -45,8 +46,9 @@ const Register = (props) => {
       <label htmlFor="password">Password</label> 
       <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" minLength={8} required placeholder="password"  id="password" name="password"></input> 
 
-      <button type="submit">Register</button>
+      <button className="btn" type="submit">Register</button>
    </form>
+   <Link to="/posts">View Posts</Link> 
   
     </>
   )

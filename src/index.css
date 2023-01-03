@@ -21,21 +21,16 @@ body {
 }
 
 .nav{
-  display: flex;
-  list-style: none;
   background-color: rgb(117, 117, 204);
-  color: white;
   padding: 1em;
+
+}
+.navList {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
 }
 
-.navList {
-  margin: 0 1em;
-  display: flex;
-  list-style: none;
-  justify-content: space-between;
-  font-size: 1.2rem;
-  text-decoration: none;
-}
 li:hover{
   text-decoration: underline solid black;
 }
@@ -46,11 +41,11 @@ a{
 
 .btn {
   display: inline-block;
-  background: #000;
-  color: #fff;
+  background: rgb(117, 117, 204);
+  color: rgb(243, 238, 238);
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 5px 10px;
+  margin: 3px;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
