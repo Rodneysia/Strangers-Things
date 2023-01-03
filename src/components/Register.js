@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [userIsRegistered, setUserIsRegistered] = useState(false);
   
-    
+    if (userIsRegistered) {
+      return <Navigate to="/users/login"/>
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,6 +31,7 @@ const Register = (props) => {
       }).then(response => response.json())
       .then(result => {
         console.log(result);
+        setUserIsRegistered(true);
       })
       .catch(console.error);
    
@@ -48,7 +53,6 @@ const Register = (props) => {
 
       <button className="btn" type="submit">Register</button>
    </form>
-   <Link to="/posts">View Posts</Link> 
   
     </>
   )

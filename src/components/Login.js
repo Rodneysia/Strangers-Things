@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 
 const Login = (props) => {
     
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
+    const [userIsActive, setUserIsActive] = useState(false);
   
-      
+    if (userIsActive) {
+      return <Navigate to="/posts"/>
+    }
     const handleSubmit = (e) => {
     e.preventDefault();
       
@@ -32,14 +36,16 @@ const Login = (props) => {
         } 
         const token = result.data.token;
         window.localStorage.setItem('token', token);
-      }) 
+        setUserIsActive(true);
+        
+      })
       .catch(err => console.log(err));
     }
     
 
   return (
     <>
-    
+    <h1>Login</h1>
    <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label> 
       <input value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} type="email" placeholder="youremail@email.com" id="email" name="email"></input>
@@ -49,7 +55,7 @@ const Login = (props) => {
 
       <button className="btn" type="submit">Login</button>
    </form>
-   <Link to="/posts">View Posts</Link> 
+ 
    </>
   )
 }
