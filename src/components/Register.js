@@ -7,7 +7,7 @@ const Register = (props) => {
     const [userIsRegistered, setUserIsRegistered] = useState(false);
   
     if (userIsRegistered) {
-      return <Navigate to="/users/login"/>
+      return <Navigate to="/posts"/>
     }
 
     const handleSubmit = (e) => {
@@ -51,6 +51,7 @@ const Register = (props) => {
 
       <button className="btn" type="submit">Register</button>
    </form>
+   
   
     </>
   )

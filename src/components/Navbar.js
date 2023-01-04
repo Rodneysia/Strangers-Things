@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
+  const auth = window.localStorage.getItem('token');
+  const logout = () => {
+    window.localStorage.removeItem('token');
+    ;
+    }
   return (
     <>
     <nav className="nav">
@@ -14,7 +19,8 @@ const Navbar = () => {
           <li><NavLink to="/"> Home </NavLink></li>
           <li><NavLink to="/posts"> Posts </NavLink></li>
           <li><NavLink to="/users/register"> Register </NavLink></li>
-          <li><NavLink to="/users/login"> Login </NavLink></li>
+          <li>{ auth ? <NavLink onClick={logout} to="/">Logout</NavLink> : 
+           <NavLink to="/users/login">Login</NavLink>}</li>
         </ul>
       </div>
 

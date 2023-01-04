@@ -54,7 +54,8 @@ const Login = (props) => {
 
       <button className="btn" type="submit">Login</button>
    </form>
-    <button className="btn">Logout</button>
+    
+  
    </>
   )
 }

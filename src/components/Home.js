@@ -1,9 +1,11 @@
 import React from 'react'
+import {NavLink } from 'react-router-dom'
 
 const Home = () => {
   return (
     <div>
-      Welcome to Stranger's Things!
+      <h2>Welcome to Stranger's Things!</h2>
+      <NavLink to="/users/login">Login here</NavLink>
     </div>
   )
 }
