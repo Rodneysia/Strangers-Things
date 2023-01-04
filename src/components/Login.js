@@ -7,6 +7,8 @@ const Login = (props) => {
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [userIsActive, setUserIsActive] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    
   
     if (userIsActive) {
       return <Navigate to="/posts"/>
@@ -39,11 +41,15 @@ const Login = (props) => {
         
       })
       .catch(err => console.log(err));
+      setErrorMessage('Invalid email or password. Please try again');
 
     }
   
   return (
     <>
+    {errorMessage && (
+       <p> {errorMessage} </p>
+)}
     <h1>Login</h1>
    <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label> 
@@ -52,7 +58,7 @@ const Login = (props) => {
       <label htmlFor="password">Password</label> 
       <input value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} type="password" placeholder="password" id="password" name="password"></input> 
 
-      <button className="btn" type="submit">Login</button>
+      <button className="btn" type="submit" >Login</button>
    </form>
     
   
