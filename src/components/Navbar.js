@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const auth = window.localStorage.getItem('token');
+ 
   const logout = () => {
     window.localStorage.removeItem('token');
     ;

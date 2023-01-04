@@ -15,6 +15,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar';
 import './index.css';
 
+
 const ErrorBoundary = () => {
   let error = useRouteError();
   console.error(error);

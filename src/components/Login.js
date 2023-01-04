@@ -33,7 +33,9 @@ const Login = (props) => {
       .then(result => {
         console.log(result);
         if(!result.success){
+          setErrorMessage('Invalid email or password. Please try again');
           throw result.error;
+         
         } 
         const token = result.data.token;
         window.localStorage.setItem('token', token);
@@ -41,7 +43,7 @@ const Login = (props) => {
         
       })
       .catch(err => console.log(err));
-      setErrorMessage('Invalid email or password. Please try again');
+     
 
     }
   

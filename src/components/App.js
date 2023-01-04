@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
+import Create from './Create';
 
 const App = () => {
     //console.log(window.location);
@@ -41,8 +41,9 @@ const App = () => {
   
 
   return <>
-     
-    
+     <h2>
+     <Create />
+    </h2>
     {
         posts.map((post) => (
         <div key={post._id}>
