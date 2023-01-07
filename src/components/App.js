@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Create from './Create';
 
 const App = () => {
-    //console.log(window.location);
+  
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
    
@@ -11,9 +11,10 @@ const App = () => {
           const resp = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/posts/')
          .then ( (resp) => resp.json () )
          
-        // console.log('resp:', resp);
+      
          setPosts(resp.data.posts);
-         
+         setUser(user);
+    
          tokenToUser();
   
         }
@@ -30,9 +31,9 @@ const App = () => {
       })
       .then(response => response.json())
       .then(result => {
-        const user = result.data;
-        setUser(user);
-        //console.log(user);
+    
+        
+       
       })
       .catch(console.error);
     }

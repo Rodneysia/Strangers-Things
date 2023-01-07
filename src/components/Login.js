@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import { Navigate } from "react-router-dom";
 
 
-const Login = (props) => {
-    
+const Login = () => {
+    const [token, setToken] = useState(''); 
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [userIsActive, setUserIsActive] = useState(false);
@@ -15,7 +15,7 @@ const Login = (props) => {
     } 
     const handleSubmit = (e) => {
     e.preventDefault();
-      
+    
         fetch ('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/users/login' , {
   
         method: "POST",
@@ -37,8 +37,7 @@ const Login = (props) => {
           throw result.error;
          
         } 
-        const token = result.data.token;
-        window.localStorage.setItem('token', token);
+        setToken(result.data.token);
         setUserIsActive(true);
         
       })

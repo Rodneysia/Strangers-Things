@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Link, Navigate } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 
@@ -19,6 +19,7 @@ const Navbar = () => {
         <ul className="navList">
           <li><NavLink to="/"> Home </NavLink></li>
           <li><NavLink to="/posts"> Posts </NavLink></li>
+          <li><NavLink to="/users/me"> Profile </NavLink></li>
           <li><NavLink to="/users/register"> Register </NavLink></li>
           <li>{ auth ? <NavLink onClick={logout} to="/">Logout</NavLink> : 
            <NavLink to="/users/login">Login</NavLink>}</li>

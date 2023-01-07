@@ -3,13 +3,12 @@ import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
   useRouteError,
   Outlet,
 } from "react-router-dom";
 import App from './components/App';
 import Home from "./components/Home";
+import Profile from "./components/Profile";
 import Register from "./components/Register";
 import Login from './components/Login'
 import Navbar from './components/Navbar';
@@ -44,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/posts",
         element: <App />,
+      },
+      {
+        path: "/users/me",
+        element: <Profile />,
       },
       {
         path: "/users/register",
