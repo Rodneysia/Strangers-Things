@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Navigate } from "react-router-dom";
 
 const Register = (props) => {
+  console.log("from register", props);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userIsRegistered, setUserIsRegistered] = useState(false);

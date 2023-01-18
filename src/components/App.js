@@ -1,11 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, } from 'react';
+import { useLocation } from "react-router-dom";
 import Create from './Create';
 
-const App = () => {
+const App = (props) => {
   
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
-   
+    const location = useLocation();
+    const { state } = location;
+    console.log(location);
+
     useEffect(() => {
         const fetchPosts = async () => {
           const resp = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/posts/')

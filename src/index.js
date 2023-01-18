@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
@@ -22,9 +22,10 @@ const ErrorBoundary = () => {
 }
 
 const AppLayout = () => {
+  const [token, setToken] = useState("abc");
   return (
     <>
-    <Navbar />
+    <Navbar token={token} />
     <Outlet />
     </>
   )

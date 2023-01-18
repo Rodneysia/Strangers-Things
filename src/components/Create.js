@@ -12,8 +12,6 @@ const Create = ({token}) => {
     const handleSubmit = async (e) => {
      e.preventDefault();
      
-      console.log('title, description, price: ', title, description, price);
-     
      
       await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-MT-WEB-PT/posts', {
         method: "POST",
